@@ -33,6 +33,9 @@ function GetMovieInfoJavDB($movie_data, $data ,$list_data)
 	if (isset($movie_data->backdrop)) {
 		 $data['extra'][PLUGINID]['backdrop'] = array($movie_data->backdrop);
 	}
+	if ((float)$movie_data->vote_average) {
+		$data['extra'][PLUGINID]['rating'] = array('themoviedb' => (float)$movie_data->vote_average);
+	}
 	if (isset($movie_data->belongs_to_collection)) {
 		 $data['extra'][PLUGINID]['collection_id'] = array('themoviedb' => $movie_data->belongs_to_collection->id);
 	}
