@@ -18,7 +18,7 @@ function install()
 	cd /tmp/;
 	#wget https://bootstrap.pypa.io/ez_setup.py -O - | python && easy_install pip && pip install requests && pip install bs4 && pip install lxml
 	wget --no-check-certificate https://github.com/crazykuma/dsm_plugins/raw/master/dsm_javdb_patch.tar -O dsm_javdb_patch.tar;
-	if [ ! -f "dms_javdb_patch.tar" ]; then
+	if [ ! -f "dsm_javdb_patch.tar" ]; then
 		echo '下载补丁失败，请检查网络';
 		exit 1;
 	else
@@ -39,6 +39,7 @@ function install()
 
 		chown VideoStation:VideoStation /var/packages/VideoStation/target/plugins/syno_themoviedb/search.php
 		chown VideoStation:VideoStation /var/packages/VideoStation/target/plugins/syno_synovideodb/search.php
+		rm dsm_javdb_patch.tar
 		cd -
 		echo '==========================================================================';
 		echo "恭喜, DS Video JavDb 搜刮器补丁  安装完成！";
