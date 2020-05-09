@@ -42,7 +42,7 @@ def getdata(vid):
         elif title == '片商':
             rt["writers"] = getvalues(res[i])
         elif title == '評分':
-            rt['vote_average'] = float(res[i].select(
+            rt['vote_average'] = 2 * float(res[i].select(
                 ".value")[0].text.split("分")[0].split()[0])
 
     rt["summary"] = ''
