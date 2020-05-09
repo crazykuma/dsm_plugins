@@ -18,33 +18,27 @@ function install()
 	cd /tmp/;
 	#wget https://bootstrap.pypa.io/ez_setup.py -O - | python && easy_install pip && pip install requests && pip install bs4 && pip install lxml
 	wget --no-check-certificate https://github.com/crazykuma/dsm_plugins/raw/master/dsm_javdb_patch.tar -O dsm_javdb_patch.tar;
-	if [ ! -f "dsm_javdb_patch.tar" ]; then
-		echo '下载补丁失败，请检查网络';
-		exit 1;
-	else
-		echo '下载补丁成功，等待安装'
-		tar -xvf dsm_javdb_patch.tar
+	tar -xvf dsm_javdb_patch.tar
 
-		mv /var/packages/VideoStation/target/plugins/syno_themoviedb/search.php /var/packages/VideoStation/target/plugins/syno_themoviedb/search.php.javback
-		mv /var/packages/VideoStation/target/plugins/syno_synovideodb/search.php /var/packages/VideoStation/target/plugins/syno_synovideodb/search.php.javback
+	mv /var/packages/VideoStation/target/plugins/syno_themoviedb/search.php /var/packages/VideoStation/target/plugins/syno_themoviedb/search.php.javback
+	mv /var/packages/VideoStation/target/plugins/syno_synovideodb/search.php /var/packages/VideoStation/target/plugins/syno_synovideodb/search.php.javback
 
 
-		cp -rfa ./dsm_javdb_patch/syno_themoviedb /var/packages/VideoStation/target/plugins/;
-		cp -rfa ./dsm_javdb_patch/syno_synovideodb /var/packages/VideoStation/target/plugins/;
+	cp -rfa ./dsm_javdb_patch/syno_themoviedb /var/packages/VideoStation/target/plugins/;
+	cp -rfa ./dsm_javdb_patch/syno_synovideodb /var/packages/VideoStation/target/plugins/;
 
-		chmod 0755 /var/packages/VideoStation/target/plugins/syno_themoviedb/search.php
-		chmod 0755 /var/packages/VideoStation/target/plugins/syno_themoviedb/list.py
-		chmod 0755 /var/packages/VideoStation/target/plugins/syno_themoviedb/data.py
-		chmod 0755 /var/packages/VideoStation/target/plugins/syno_synovideodb/search.php
+	chmod 0755 /var/packages/VideoStation/target/plugins/syno_themoviedb/search.php
+	chmod 0755 /var/packages/VideoStation/target/plugins/syno_themoviedb/list.py
+	chmod 0755 /var/packages/VideoStation/target/plugins/syno_themoviedb/data.py
+	chmod 0755 /var/packages/VideoStation/target/plugins/syno_synovideodb/search.php
 
-		chown VideoStation:VideoStation /var/packages/VideoStation/target/plugins/syno_themoviedb/search.php
-		chown VideoStation:VideoStation /var/packages/VideoStation/target/plugins/syno_synovideodb/search.php
-		rm dsm_javdb_patch.tar
-		cd -
-		echo '==========================================================================';
-		echo "恭喜, DS Video JavDb 搜刮器补丁  安装完成！";
-		echo '==========================================================================';
-	fi
+	chown VideoStation:VideoStation /var/packages/VideoStation/target/plugins/syno_themoviedb/search.php
+	chown VideoStation:VideoStation /var/packages/VideoStation/target/plugins/syno_synovideodb/search.php
+	rm dsm_javdb_patch.tar
+	cd -
+	echo '==========================================================================';
+	echo "恭喜, DS Video JavDb 搜刮器补丁  安装完成！";
+	echo '==========================================================================';
 }
 function upgrade()
 {
